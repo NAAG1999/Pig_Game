@@ -51,7 +51,7 @@ document.querySelector('.btn-hold').addEventListener('click',function () {
 
     scores[activePlayer] += roundscores;
     //scores[activePlayer] = scores[activePlayer] + roundscores;
-
+    document.querySelector('score-' + activePlayer).textContent = scores[activePlayer];
 
 })
 
