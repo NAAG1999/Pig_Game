@@ -36,7 +36,7 @@ document.querySelector('.btn-hold').addEventListener('click',function () {
             scores[activePlayer] += roundscores;
             document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
             //hitting hold transfers the die to other player
-            if (scores[activePlayer] >= 20) {
+            if (scores[activePlayer] >= 100) {
                 document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
                 document.querySelector('.dice').style.display = 'none';
                 document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
