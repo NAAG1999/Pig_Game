@@ -1,13 +1,13 @@
 /* Game instructions:
     Random dice is rolled and if a player gets a 1 then player loses all the score taken,
     the player first crossing 100 will be declared winner.
-    It uses random event of javascript */
+    It uses random event of javascript to calculate the score */
 
 
 
 
 
-var scores, roundscores, activePlayer, dice;
+var scores, roundscores, activePlayer, dice,gamePlaying;
 
 init();
 
@@ -19,7 +19,6 @@ init();
 
 
 document.querySelector('.btn-roll').addEventListener('click',function(){
-
     var dice = Math.floor(Math.random() * 6) +1;
     var diceDOM = document.querySelector('.dice');
     diceDOM.style.display = 'block';
@@ -34,20 +33,23 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
 });
 
 document.querySelector('.btn-hold').addEventListener('click',function () {
+            scores[activePlayer] += roundscores;
+            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+            //hitting hold transfers the die to other player
+            if (scores[activePlayer] >= 20) {
+                document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+                document.querySelector('.dice').style.display = 'none';
+                document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+                document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+                //gamePlaying = false;
+            }
+            else {
+                nextPlayer();
+            }
 
-    scores[activePlayer] += roundscores;
-    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-    //hitting hold transfers the die to other player
-    if(scores[activePlayer] >= 100){
-        document.querySelector('#name-' +activePlayer).textContent = 'Winner!';
-        document.querySelector('.dice').style.display='none';
-        document.querySelector('.player-' +activePlayer + '-panel').classList.add('winner');
-        document.querySelector('.player-' +activePlayer + '-panel').classList.remove('active');
-    }
-    else {
-        nextPlayer();
-    }
-})
+
+
+});
 
 function nextPlayer(){
 
@@ -74,6 +76,7 @@ function init(){
     scores =[0,0];
     activePlayer = 0;
     roundscores =0;
+
     document.querySelector('.dice').style.display = 'none';
 
     document.getElementById('score-0').textContent = '0';
