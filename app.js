@@ -40,19 +40,35 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
         //roundscores = roundscores + dice;
         document.querySelector('#current-' + activePlayer ).textContent = roundscores;
     } else {
-        activePlayer ===0 ? activePlayer =1 : activePlayer =0;
-        roundscores = 0;
+        nextPlayer();
 
-        document.getElementById('current-0').textContent
     }
 });
 
 document.querySelector('.btn-hold').addEventListener('click',function () {
 
     scores[activePlayer] += roundscores;
-    //scores[activePlayer] = scores[activePlayer] + roundscores;
-    document.querySelector('score-' + activePlayer).textContent = scores[activePlayer];
 
+    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+    //hitting hold transfers the die to other player
+
+    nextPlayer();
 })
+
+function nextPlayer(){
+
+    activePlayer ===0 ? activePlayer =1 : activePlayer =0;
+    roundscores = 0;
+
+    document.getElementById('current-0').textContent ='0';
+    document.getElementById('current-1').textContent ='0';
+
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    document.querySelector('.dice').style.display = 'none';
+
+
+}
 
 
