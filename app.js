@@ -47,6 +47,12 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
     }
 });
 
+document.querySelector('.btn-hold').addEventListener('click',function () {
 
+    scores[activePlayer] += roundscores;
+    //scores[activePlayer] = scores[activePlayer] + roundscores;
+
+
+})
 
 
