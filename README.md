@@ -1,4 +1,5 @@
 #Pig_Game
+
 First Javascript Game
 This is a purely DOM manipulation game. 
 Game Rules :
